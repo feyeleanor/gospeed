@@ -59,12 +59,20 @@ func BenchmarkBaselineSliceSet(b *testing.B) {
 	for i := 0; i < b.N; i++ { s[0] = 1 }
 }
 
-func BenchmarkBaselineMapGet(b *testing.B) {
+func BenchmarkBaselineMapIntGet(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = h[0] }
 }
 
-func BenchmarkBaselineMapSet(b *testing.B) {
+func BenchmarkBaselineMapIntSet(b *testing.B) {
 	for i := 0; i < b.N; i++ { h[0] = 1 }
+}
+
+func BenchmarkBaselineMapStringGet(b *testing.B) {
+	for i := 0; i < b.N; i++ { _ = hs["0"] }
+}
+
+func BenchmarkBaselineMapStringSet(b *testing.B) {
+	for i := 0; i < b.N; i++ { hs["0"] = 1 }
 }
 
 func BenchmarkBaselineIf(b *testing.B) {

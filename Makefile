@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=feyeleanor/golightly
+TARG=feyeleanor/gospeed
 GOFILES=\
 	baseline.go
 
