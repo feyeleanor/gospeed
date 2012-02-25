@@ -1,0 +1,11 @@
+== About ==
+
+Gospeed is a library of micro-benchmarks for Go which evolved from the GoLightly project. It's main
+utility is for understanding and reasoning about the performance of Go programs.
+
+
+== Usage ==
+
+Download the repo to a convenient location in your $GOPATH and then run the benchmarks with:
+
+	go test -v -test.bench=".*"
