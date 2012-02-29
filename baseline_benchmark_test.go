@@ -157,6 +157,42 @@ func BenchmarkBaselineForSliceLength10(b *testing.B) {
 	}
 }
 
+func BenchmarkBaselineMakeChannelBoolUnbuffered(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan bool)
+	}
+}
+
+func BenchmarkBaselineMakeChannelBool1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan bool, 1)
+	}
+}
+
+func BenchmarkBaselineMakeChannelBool10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan bool, 10)
+	}
+}
+
+func BenchmarkBaselineMakeChannelStringUnbuffered(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan string)
+	}
+}
+
+func BenchmarkBaselineMakeChannelString1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan string, 1)
+	}
+}
+
+func BenchmarkBaselineMakeChannelString10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = make(chan string, 10)
+	}
+}
+
 func BenchmarkBaselineFunctionCall(b *testing.B) {
 	for i := 0; i < b.N; i++ { f() }
 }
