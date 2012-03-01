@@ -193,6 +193,12 @@ func BenchmarkBaselineMakeChannelString10(b *testing.B) {
 	}
 }
 
+func BenchmarkBaselineGo(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		go func() {}()
+	}
+}
+
 func BenchmarkBaselineFunctionCall(b *testing.B) {
 	for i := 0; i < b.N; i++ { f() }
 }
