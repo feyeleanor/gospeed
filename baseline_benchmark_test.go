@@ -219,6 +219,25 @@ func BenchmarkBaselineFunctionCall5VarInts(b *testing.B) {
 	for i := 0; i < b.N; i++ { fvarints(1, 2, 3, 4, 5) }
 }
 
+func BenchmarkBaselineFunctionCallWithDefer(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		func() {
+			defer func() {}()
+		}()
+	}
+}
+
+func BenchmarkBaselineFunctionCallPanicRecover(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		func() {
+			defer func() {
+				_ = recover()
+			}()
+			panic(nil)
+		}()
+	}
+}
+
 func BenchmarkBaselineMethodCallDirect(b *testing.B) {
 	for i := 0; i < b.N; i++ { dummy.m1() }
 }
