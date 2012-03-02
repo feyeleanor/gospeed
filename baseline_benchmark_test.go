@@ -181,6 +181,36 @@ func BenchmarkBaselineForReverseSliceLength10(b *testing.B) {
 	}
 }
 
+func BenchmarkBaselineForLoopIteration100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < 100; j++ {  }
+	}
+}
+
+func BenchmarkBaselineForReverseLoopIteration100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 100; j > 0; j-- {  }
+	}
+}
+
+func BenchmarkBaselineForRange100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, _ = range s100 {}
+	}
+}
+
+func BenchmarkBaselineForSliceLength100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < len(s100); j++ {}
+	}
+}
+
+func BenchmarkBaselineForReverseSliceLength100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := len(s100); j > 0; j-- {}
+	}
+}
+
 func BenchmarkBaselineMakeChannelBoolUnbuffered(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = make(chan bool)
