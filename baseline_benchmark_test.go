@@ -127,9 +127,9 @@ func BenchmarkBaselineForLoopIteration(b *testing.B) {
 	}
 }
 
-func BenchmarkBaselineForLoopIteration10(b *testing.B) {
+func BenchmarkBaselineForReverseLoopIteration(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 10; j++ {  }
+		for j := 1; j > 0; j-- {  }
 	}
 }
 
@@ -139,21 +139,45 @@ func BenchmarkBaselineForRange(b *testing.B) {
 	}
 }
 
-func BenchmarkBaselineForRange10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s10 {}
-	}
-}
-
 func BenchmarkBaselineForSliceLength(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(s); j++ {}
 	}
 }
 
+func BenchmarkBaselineForReverseSliceLength(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := len(s); j > 0; j-- {}
+	}
+}
+
+func BenchmarkBaselineForLoopIteration10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < 10; j++ {  }
+	}
+}
+
+func BenchmarkBaselineForReverseLoopIteration10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := 10; j > 0; j-- {  }
+	}
+}
+
+func BenchmarkBaselineForRange10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, _ = range s10 {}
+	}
+}
+
 func BenchmarkBaselineForSliceLength10(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(s10); j++ {}
+	}
+}
+
+func BenchmarkBaselineForReverseSliceLength10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j := len(s10); j > 0; j-- {}
 	}
 }
 
