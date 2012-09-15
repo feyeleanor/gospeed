@@ -1,4 +1,4 @@
-package baseline
+package gospeed
 
 var x int
 var x32 int32

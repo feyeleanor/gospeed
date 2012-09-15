@@ -1,4 +1,4 @@
-package baseline
+package gospeed
 
 import "testing"
 
