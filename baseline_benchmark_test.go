@@ -1,7 +1,9 @@
 package gospeed
 
-import "reflect"
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func BenchmarkBaselineCastInt32ToInt(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = int(x32) }
@@ -57,6 +59,22 @@ func BenchmarkBaselineSliceGet(b *testing.B) {
 
 func BenchmarkBaselineSliceSet(b *testing.B) {
 	for i := 0; i < b.N; i++ { s[0] = 1 }
+}
+
+func BenchmarkBaselineMethodGetSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ { _ = dummyAccessor.get(0) }
+}
+
+func BenchmarkBaselineMethodSetSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ { dummyAccessor.set(0, 1) }
+}
+
+func BenchmarkBaselineMethodInterfaceGetSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ { _ = dai.get(0) }
+}
+
+func BenchmarkBaselineMethodInterfaceSetSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ { dai.set(0, 1) }
 }
 
 func BenchmarkBaselineMapIntGet(b *testing.B) {
