@@ -45,6 +45,31 @@ func BenchmarkBaselineVariableDecrement(b *testing.B) {
 	for i := 0; i < b.N; i++ { x-- }
 }
 
+func BenchmarkBaselineVariableIntegerAdd(b *testing.B) {
+	x, y := 1, 2
+	for i := 0; i < b.N; i++ { _ = x + y }
+}
+
+func BenchmarkBaselineVariableIntegerSubtract(b *testing.B) {
+	x, y := 1, 2
+	for i := 0; i < b.N; i++ { _ = x - y }
+}
+
+func BenchmarkBaselineVariableIntegerMultiply(b *testing.B) {
+	x, y := 1, 2
+	for i := 0; i < b.N; i++ { _ = x * y }
+}
+
+func BenchmarkBaselineVariableIntegerDivide(b *testing.B) {
+	x, y := 1, 2
+	for i := 0; i < b.N; i++ { _ = x / y }
+}
+
+func BenchmarkBaselineVariableIntegerRemainder(b *testing.B) {
+	x, y := 1, 2
+	for i := 0; i < b.N; i++ { _ = x % y }
+}
+
 func BenchmarkBaselineFieldGet(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = dummy.i }
 }
