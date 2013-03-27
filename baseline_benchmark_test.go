@@ -326,6 +326,115 @@ func BenchmarkBaselineGo(b *testing.B) {
 	}
 }
 
+func BenchmarkBaselineChannelClose(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan bool, 1)
+		b.StartTimer()
+		close(c)
+	}
+}
+
+func BenchmarkBaselineSyncBoolChannelWrite1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan bool)
+			go func() {
+				for _ = range c {}
+			}()
+		b.StartTimer()
+		c <- true
+		close(c)
+	}
+}
+
+func BenchmarkBaselineSyncBoolChannelWrite10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan bool)
+			go func() {
+				for _ = range c {}
+			}()
+		b.StartTimer()
+		for j := 10; j > 0; j-- {
+			c <- true
+		}
+		close(c)
+	}
+}
+
+func BenchmarkBaselineASyncBoolChannelWrite1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan bool, 1)
+		b.StartTimer()
+		c <- true
+		close(c)
+	}
+}
+
+func BenchmarkBaselineASyncBoolChannelWrite10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan bool, 10)
+		b.StartTimer()
+		for j := 10; j > 0; j-- {
+			c <- true
+		}
+		close(c)
+	}
+}
+
+func BenchmarkBaselineSyncStringChannelWrite1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan string)
+			go func() {
+				for _ = range c {}
+			}()
+		b.StartTimer()
+		c <- "hello"
+		close(c)
+	}
+}
+
+func BenchmarkBaselineSyncStringChannelWrite10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan string)
+			go func() {
+				for _ = range c {}
+			}()
+		b.StartTimer()
+		for j := 10; j > 0; j-- {
+			c <- "hello"
+		}
+		close(c)
+	}
+}
+
+func BenchmarkBaselineASyncStringChannelWrite1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan string, 1)
+		b.StartTimer()
+		c <- "hello"
+		close(c)
+	}
+}
+
+func BenchmarkBaselineASyncStringChannelWrite10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+			c := make(chan string, 10)
+		b.StartTimer()
+		for j := 10; j > 0; j-- {
+			c <- "hello"
+		}
+		close(c)
+	}
+}
+
 func BenchmarkBaselineFunctionCall(b *testing.B) {
 	for i := 0; i < b.N; i++ { f() }
 }
