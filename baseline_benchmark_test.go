@@ -1,9 +1,6 @@
 package gospeed
 
-import (
-	"reflect"
-	"testing"
-)
+import "testing"
 
 func BenchmarkBaselineCastInt32ToInt(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = int(x32) }
@@ -419,18 +416,6 @@ func BenchmarkBaselineTypeAssertionInterface1(b *testing.B) {
 
 func BenchmarkBaselineTypeAssertionInterface2(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = di.(dummyInterface2) }
-}
-
-func BenchmarkBaselineTypeReflectPrimitiveToValue(b *testing.B) {
-	for i := 0; i < b.N; i++ { reflect.ValueOf(in) }
-}
-
-func BenchmarkBaselineTypeReflectSliceToValue(b *testing.B) {
-	for i := 0; i < b.N; i++ { reflect.ValueOf(s) }
-}
-
-func BenchmarkBaselineTypeReflectStructToValue(b *testing.B) {
-	for i := 0; i < b.N; i++ { reflect.ValueOf(dummy) }
 }
 
 func BenchmarkBaselineTypeCheck(b *testing.B) {
