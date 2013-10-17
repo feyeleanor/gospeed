@@ -8,4 +8,7 @@ utility is for understanding and reasoning about the performance of Go programs.
 
 Download the repo to a convenient location in your $GOPATH and then run the benchmarks with:
 
-	go test -v -test.bench=".*"
+	go test -v -test.bench=".*" -test.timeout="60m"
+
+the sixty minute timeout may be necessary when running the entire benchmark suite or portions which
+make significant use of channels as the default aggregate test timeout is ten minutes.

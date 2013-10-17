@@ -2,6 +2,5 @@ package gospeed
 
 import "testing"
 
-func TestBaseline(t *testing.T) {
-	
+func TestBaseline(t *testing.T) {	
 }
