@@ -83,22 +83,6 @@ func BenchmarkBaselineSliceSet(b *testing.B) {
 	for i := 0; i < b.N; i++ { s[0] = 1 }
 }
 
-func BenchmarkBaselineMethodGetSlice(b *testing.B) {
-	for i := 0; i < b.N; i++ { _ = dummyAccessor.get(0) }
-}
-
-func BenchmarkBaselineMethodSetSlice(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummyAccessor.set(0, 1) }
-}
-
-func BenchmarkBaselineMethodInterfaceGetSlice(b *testing.B) {
-	for i := 0; i < b.N; i++ { _ = dai.get(0) }
-}
-
-func BenchmarkBaselineMethodInterfaceSetSlice(b *testing.B) {
-	for i := 0; i < b.N; i++ { dai.set(0, 1) }
-}
-
 func BenchmarkBaselineMapIntGet(b *testing.B) {
 	for i := 0; i < b.N; i++ { _ = h[0] }
 }
@@ -309,55 +293,10 @@ func BenchmarkBaselineFunctionCallWithDefer(b *testing.B) {
 	}
 }
 
-func BenchmarkBaselineFunctionCallPanicRecover(b *testing.B) {
+func BenchmarkBaselineDefer(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		func() {
-			defer func() {
-				_ = recover()
-			}()
-			panic(nil)
-		}()
+		defer func() {}()
 	}
-}
-
-func BenchmarkBaselineMethodCallDirect(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m1() }
-}
-
-func BenchmarkBaselineMethodCallDirect1Arg(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m1arg(1) }
-}
-
-func BenchmarkBaselineMethodCallDirect1Int(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m1int(1) }
-}
-
-func BenchmarkBaselineMethodCallDirect5Args(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m1varargs(1, 2, 3, 4, 5) }
-}
-
-func BenchmarkBaselineMethodCallDirect5Ints(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m1varints(1, 2, 3, 4, 5) }
-}
-
-func BenchmarkBaselineMethodCallIndirect(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m2() }
-}
-
-func BenchmarkBaselineMethodCallIndirect1Arg(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m2arg(1) }
-}
-
-func BenchmarkBaselineMethodCallIndirect1Int(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m2int(1) }
-}
-
-func BenchmarkBaselineMethodCallIndirect5Args(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m2varargs(1, 2, 3, 4, 5) }
-}
-
-func BenchmarkBaselineMethodCallIndirect5Ints(b *testing.B) {
-	for i := 0; i < b.N; i++ { dummy.m2varints(1, 2, 3, 4, 5) }
 }
 
 func BenchmarkBaselineTypeAssertion(b *testing.B) {
