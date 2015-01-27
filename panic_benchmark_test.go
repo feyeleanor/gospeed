@@ -2,26 +2,10 @@ package gospeed
 
 import "testing"
 
-func BenchmarkPanic(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		b.StopTimer()
-		func() {
-			defer func() {
-				b.StopTimer()
-				recover()
-			}()
-			b.StartTimer()
-			panic(nil)
-		}()
-	}
-}
-
 func BenchmarkPanicRecover(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		b.StopTimer()
 		func() {
 			defer func() {
-				b.StartTimer()
 				recover()
 			}()
 			panic(nil)
@@ -29,7 +13,7 @@ func BenchmarkPanicRecover(b *testing.B) {
 	}
 }
 
-func BenchmarkPanicFunctionCall(b *testing.B) {
+func BenchmarkPanicRecoverAssign(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		func() {
 			defer func() {
