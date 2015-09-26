@@ -76,25 +76,27 @@ func BenchmarkConcurrentMakeASyncChannelAndClose1000(b *testing.B) {
 
 func BenchmarkConcurrentSyncBoolChannelWrite1(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		c <- true
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentSyncBoolChannelWrite10(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 10; j > 0; j-- {
@@ -102,16 +104,17 @@ func BenchmarkConcurrentSyncBoolChannelWrite10(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentSyncBoolChannelWrite100(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 100; j > 0; j-- {
@@ -119,16 +122,17 @@ func BenchmarkConcurrentSyncBoolChannelWrite100(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentSyncBoolChannelWrite1000(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 1000; j > 0; j-- {
@@ -136,31 +140,33 @@ func BenchmarkConcurrentSyncBoolChannelWrite1000(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentASyncBoolChannelWrite1(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool, 1)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool, 1)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		c <- true
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentASyncBoolChannelWrite10(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool, 10)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool, 10)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 10; j > 0; j-- {
@@ -168,16 +174,17 @@ func BenchmarkConcurrentASyncBoolChannelWrite10(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentASyncBoolChannelWrite100(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool, 100)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool, 100)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 100; j > 0; j-- {
@@ -185,16 +192,17 @@ func BenchmarkConcurrentASyncBoolChannelWrite100(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
 func BenchmarkConcurrentASyncBoolChannelWrite1000(b *testing.B) {
 	b.StopTimer()
-		c := make(chan bool, 1000)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan bool, 1000)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 1000; j > 0; j-- {
@@ -202,31 +210,173 @@ func BenchmarkConcurrentASyncBoolChannelWrite1000(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentSyncStringChannelWrite1(b *testing.B) {
+func BenchmarkConcurrentSyncStringChannelWriteEmpty1(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		c <- ""
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentSyncStringChannelWriteEmpty10(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 10; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentSyncStringChannelWriteEmpty100(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 100; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentSyncStringChannelWriteEmpty1000(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 1000; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentASyncStringChannelWriteEmpty1(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string, 1)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		c <- ""
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentASyncStringChannelWriteEmpty10(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string, 10)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 10; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentASyncStringChannelWriteEmpty100(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string, 100)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 100; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentASyncStringChannelWriteEmpty1000(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string, 1000)
+	go func() {
+		for _ = range c {
+		}
+	}()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 1000; j > 0; j-- {
+			c <- ""
+		}
+	}
+	b.StopTimer()
+	close(c)
+	b.StartTimer()
+}
+
+func BenchmarkConcurrentSyncStringChannelWriteHello1(b *testing.B) {
+	b.StopTimer()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		c <- "hello"
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentSyncStringChannelWrite10(b *testing.B) {
+func BenchmarkConcurrentSyncStringChannelWriteHello10(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 10; j > 0; j-- {
@@ -234,16 +384,17 @@ func BenchmarkConcurrentSyncStringChannelWrite10(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentSyncStringChannelWrite100(b *testing.B) {
+func BenchmarkConcurrentSyncStringChannelWriteHello100(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 100; j > 0; j-- {
@@ -251,16 +402,17 @@ func BenchmarkConcurrentSyncStringChannelWrite100(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentSyncStringChannelWrite1000(b *testing.B) {
+func BenchmarkConcurrentSyncStringChannelWriteHello1000(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 1000; j > 0; j-- {
@@ -268,31 +420,33 @@ func BenchmarkConcurrentSyncStringChannelWrite1000(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentASyncStringChannelWrite1(b *testing.B) {
+func BenchmarkConcurrentASyncStringChannelWriteHello1(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string, 1)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string, 1)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		c <- "hello"
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentASyncStringChannelWrite10(b *testing.B) {
+func BenchmarkConcurrentASyncStringChannelWriteHello10(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string, 10)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string, 10)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 10; j > 0; j-- {
@@ -300,16 +454,17 @@ func BenchmarkConcurrentASyncStringChannelWrite10(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentASyncStringChannelWrite100(b *testing.B) {
+func BenchmarkConcurrentASyncStringChannelWriteHello100(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string, 100)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string, 100)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 100; j > 0; j-- {
@@ -317,16 +472,17 @@ func BenchmarkConcurrentASyncStringChannelWrite100(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
 
-func BenchmarkConcurrentASyncStringChannelWrite1000(b *testing.B) {
+func BenchmarkConcurrentASyncStringChannelWriteHello1000(b *testing.B) {
 	b.StopTimer()
-		c := make(chan string, 1000)
-		go func() {
-			for _ = range c {}
-		}()
+	c := make(chan string, 1000)
+	go func() {
+		for _ = range c {
+		}
+	}()
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 1000; j > 0; j-- {
@@ -334,6 +490,6 @@ func BenchmarkConcurrentASyncStringChannelWrite1000(b *testing.B) {
 		}
 	}
 	b.StopTimer()
-		close(c)
+	close(c)
 	b.StartTimer()
 }
