@@ -41,8 +41,8 @@ func (d *dummyStructure) m2arg(x interface{})        {}
 func (d *dummyStructure) m2int(x int)                {}
 func (d *dummyStructure) m2varargs(x ...interface{}) {}
 func (d *dummyStructure) m2varints(x ...int)         {}
-func (d dummyStructure) get(i int) (r int)           { return s[i] }
-func (d dummyStructure) set(i, x int)                { s[i] = x }
+func (d dummyStructure) get(i int) (r int)           { return d.s[i] }
+func (d dummyStructure) set(i, x int)                { d.s[i] = x }
 
 var dummy dummyStructure = dummyStructure{}
 var di interface{} = dummyStructure{}
