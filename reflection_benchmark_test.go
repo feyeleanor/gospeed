@@ -132,7 +132,7 @@ func BenchmarkReflectMakeFuncSinkArg(b *testing.B) {
 }
 
 func BenchmarkReflectMakeFuncSinkThenCallArg(b *testing.B) {
-	var f func(int)
+	var f func(int) int
 	for i := 0; i < b.N; i++ {
 		makeSink(&f)
 		f(0)
