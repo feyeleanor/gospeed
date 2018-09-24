@@ -89,8 +89,7 @@ func BenchmarkReflectInterfaceToValueElemIsValid(b *testing.B) {
 	}
 }
 
-func paramFree(p []reflect.Value) (r []reflect.Value) {
-	return
+func paramFree(p []reflect.Value) {
 }
 
 func makeParamFree(fptr interface{}) {
@@ -114,8 +113,8 @@ func BenchmarkReflectMakeFuncThenCall(b *testing.B) {
 	}
 }
 
-func sink(in []reflect.Value) []reflect.Value {
-	return []reflect.Value{in[0]}
+func sink(in []reflect.Value) {
+	[]reflect.Value{in[0]}
 }
 
 func makeSink(fptr interface{}) {
@@ -124,14 +123,14 @@ func makeSink(fptr interface{}) {
 	f.Set(v)
 }
 
-func BenchmarkReflectMakeFuncSinkArg(b *testing.B) {
+func BenchmarkReflectMakeFuncArg(b *testing.B) {
 	var f func(int)
 	for i := 0; i < b.N; i++ {
 		makeSink(&f)
 	}
 }
 
-func BenchmarkReflectMakeFuncSinkThenCallArg(b *testing.B) {
+func BenchmarkReflectMakeFuncThenCallArg(b *testing.B) {
 	var f func(int)
 	for i := 0; i < b.N; i++ {
 		makeSink(&f)
@@ -149,14 +148,14 @@ func makePassthrough(fptr interface{}) {
 	f.Set(v)
 }
 
-func BenchmarkReflectMakeFuncPassthroughArg(b *testing.B) {
+func BenchmarkReflectMakeFuncArg(b *testing.B) {
 	var f func(int) int
 	for i := 0; i < b.N; i++ {
 		makePassthrough(&f)
 	}
 }
 
-func BenchmarkReflectMakeFuncPassthroughThenCallArg(b *testing.B) {
+func BenchmarkReflectMakeFuncThenCallArg(b *testing.B) {
 	var f func(int) int
 	for i := 0; i < b.N; i++ {
 		makePassthrough(&f)
