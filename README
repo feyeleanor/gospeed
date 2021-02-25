@@ -1,6 +1,6 @@
 == About ==
 
-Gospeed is a library of micro-benchmarks for Go which evolved from the GoLightly project. It's main
+GoSpeed is a library of micro-benchmarks for Go which evolved from the GoLightly project. It's main
 utility is for understanding and reasoning about the performance of Go programs.
 
 
@@ -8,7 +8,19 @@ utility is for understanding and reasoning about the performance of Go programs.
 
 Download the repo to a convenient location in your $GOPATH and then run the benchmarks with:
 
-	go test -v -test.bench=".*" -test.timeout="60m"
+	go test -test.bench=".*"
 
-the sixty minute timeout may be necessary when running the entire benchmark suite or portions which
-make significant use of channels as the default aggregate test timeout is ten minutes.
+If you're running on older hardware such as an Intel Atom N270 netbook (which the early versions of
+GoSpeed were developed on) then you may also need to add a custom timeout to complete benchmarks
+which make significant use of channels as the default aggregate test timeout is ten minutes.
+
+	go test -test.bench=".*" -test.timeout="60m"
+
+
+== Limitations ==
+
+With releases of Go prior to 1.16 GoSpeed could be fetched with
+
+	go get github.com/feyeleanor/GoSpeed
+
+however this is no longer the case.
