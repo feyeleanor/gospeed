@@ -2,18 +2,21 @@ package gospeed
 
 import "testing"
 
+var s0 []int = []int{}
 var s []int = []int{0}
 var s10 []int = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 var s100 []int = make([]int, 100, 100)
 var s1000 []int = make([]int, 1000, 1000)
 var s10000 []int = make([]int, 10000, 10000)
 var s100000 []int = make([]int, 100000, 100000)
+var s1000000 []int = make([]int, 1000000, 1000000)
 var sd []int = []int{0}
 var sd10 []int = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 var sd100 []int = make([]int, 100, 100)
 var sd1000 []int = make([]int, 1000, 1000)
 var sd10000 []int = make([]int, 10000, 10000)
 var sd100000 []int = make([]int, 100000, 100000)
+var sd1000000 []int = make([]int, 1000000, 1000000)
 
 func BenchmarkBaselineNewSliceLiteral(b *testing.B) {
 	for i := 0; i < b.N; i++ {

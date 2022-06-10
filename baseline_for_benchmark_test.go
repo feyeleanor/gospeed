@@ -1,213 +1,64 @@
 package gospeed
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func BenchmarkBaselineForLoopIteration1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 1; j++ {
-		}
+var scaling_points []int = []int{0, 1, 10, 100, 1000, 10000, 100000, 1000000}
+var scaling_slices [][]int = [][]int{s0, s, s10, s100, s1000, s10000, s100000, s1000000}
+
+func BenchmarkBaselineForLoopIteration(b *testing.B) {
+	for _, v := range scaling_points {
+		b.Run(fmt.Sprintf("count_%v", v), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				for j := 0; j < v; j++ {
+				}
+			}
+		})
 	}
 }
 
-func BenchmarkBaselineForLoopIteration10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 10; j++ {
-		}
+func BenchmarkBaselineForReverseLoopIteration(b *testing.B) {
+	for _, v := range scaling_points {
+		b.Run(fmt.Sprintf("count_%v", v), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				for j := v; j > 0; j-- {
+				}
+			}
+		})
 	}
 }
 
-func BenchmarkBaselineForLoopIteration100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 100; j++ {
-		}
+func BenchmarkBaselineForSliceRange(b *testing.B) {
+	for _, v := range scaling_slices {
+		b.Run(fmt.Sprintf("count_%v", len(v)), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				for _, _ = range v {
+				}
+			}
+		})
 	}
 }
 
-func BenchmarkBaselineForLoopIteration1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 1000; j++ {
-		}
+func BenchmarkBaselineForSliceLength(b *testing.B) {
+	for _, v := range scaling_slices {
+		b.Run(fmt.Sprintf("count_%v", len(v)), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				for j := 0; j < len(s); j++ {
+				}
+			}
+		})
 	}
 }
 
-func BenchmarkBaselineForLoopIteration10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 10000; j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForLoopIteration100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < 100000; j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 1; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 10; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 100; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 1000; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 10000; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseLoopIteration100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 100000; j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s10 {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s100 {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s1000 {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s10000 {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceRange100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, _ = range s100000 {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s10); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s100); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s1000); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s10000); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForSliceLength100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := 0; j < len(s100000); j++ {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s); j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength10(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s10); j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength100(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s100); j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength1000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s1000); j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength10000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s10000); j > 0; j-- {
-		}
-	}
-}
-
-func BenchmarkBaselineForReverseSliceLength100000(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for j := len(s100000); j > 0; j-- {
-		}
+func BenchmarkBaselineForReverseSliceLength(b *testing.B) {
+	for _, v := range scaling_slices {
+		b.Run(fmt.Sprintf("count_%v", len(v)), func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				for j := len(s); j > 0; j-- {
+				}
+			}
+		})
 	}
 }
