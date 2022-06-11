@@ -10,7 +10,7 @@ func BenchmarkBaselineTypeAssertion(b *testing.B) {
 
 func BenchmarkBaselineTypeAssertionEmptyInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = in.(interface{})
+		_ = in.(any)
 	}
 }
 
@@ -35,7 +35,7 @@ func BenchmarkBaselineTypeCheck(b *testing.B) {
 
 func BenchmarkBaselineTypeCheckEmptyInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		if _, ok := in.(interface{}); ok {
+		if _, ok := in.(any); ok {
 		}
 	}
 }
@@ -86,7 +86,7 @@ func BenchmarkBaselineTypeSwitchBasicTypesCase(b *testing.B) {
 func BenchmarkBaselineTypeSwitchEmptyInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		switch in.(type) {
-		case interface{}:
+		case any:
 		}
 	}
 }

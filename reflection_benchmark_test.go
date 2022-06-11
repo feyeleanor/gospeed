@@ -93,7 +93,7 @@ func paramFree(p []reflect.Value) (r []reflect.Value) {
 	return
 }
 
-func makeParamFree(fptr interface{}) {
+func makeParamFree(fptr any) {
 	f := reflect.ValueOf(fptr).Elem()
 	v := reflect.MakeFunc(f.Type(), paramFree)
 	f.Set(v)
@@ -118,7 +118,7 @@ func sink(in []reflect.Value) []reflect.Value {
 	return []reflect.Value{in[0]}
 }
 
-func makeSink(fptr interface{}) {
+func makeSink(fptr any) {
 	f := reflect.ValueOf(fptr).Elem()
 	v := reflect.MakeFunc(f.Type(), sink)
 	f.Set(v)
@@ -143,7 +143,7 @@ func passthrough(in []reflect.Value) []reflect.Value {
 	return []reflect.Value{in[0]}
 }
 
-func makePassthrough(fptr interface{}) {
+func makePassthrough(fptr any) {
 	f := reflect.ValueOf(fptr).Elem()
 	v := reflect.MakeFunc(f.Type(), passthrough)
 	f.Set(v)

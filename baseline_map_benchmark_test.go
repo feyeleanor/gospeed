@@ -10,7 +10,7 @@ func BenchmarkBaselineNewMapLiteralIntToInt(b *testing.B) {
 
 func BenchmarkBaselineNewMapLiteralIntToInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = map[int]interface{}{}
+		_ = map[int]any{}
 	}
 }
 
@@ -22,7 +22,7 @@ func BenchmarkBaselineNewMapLiteralStringToInt(b *testing.B) {
 
 func BenchmarkBaselineNewMapLiteralStringToInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = map[string]interface{}{}
+		_ = map[string]any{}
 	}
 }
 
@@ -34,7 +34,7 @@ func BenchmarkBaselineNewMapLiteralIntToInt2Item(b *testing.B) {
 
 func BenchmarkBaselineNewMapLiteralIntToInterface2Item(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = map[int]interface{}{i: 0, i: 1}
+		_ = map[int]any{i: 0, i: 1}
 	}
 }
 
@@ -46,7 +46,7 @@ func BenchmarkBaselineNewMapLiteralStringToInt2Item(b *testing.B) {
 
 func BenchmarkBaselineNewMapLiteralStringToInterface2Item(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = map[string]interface{}{"0": i, "1": i}
+		_ = map[string]any{"0": i, "1": i}
 	}
 }
 
@@ -58,7 +58,7 @@ func BenchmarkBaselineNewMapIntToInt(b *testing.B) {
 
 func BenchmarkBaselineNewMapIntToInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = make(map[int]interface{})
+		_ = make(map[int]any)
 	}
 }
 
@@ -70,7 +70,7 @@ func BenchmarkBaselineNewMapStringToInt(b *testing.B) {
 
 func BenchmarkBaselineNewMapStringToInterface(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = make(map[string]interface{})
+		_ = make(map[string]any)
 	}
 }
 
