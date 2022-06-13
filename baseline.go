@@ -49,18 +49,54 @@ type dummyStructure struct {
 	h  map[int]int
 }
 
-func (d dummyStructure) m1()                 {}
-func (d dummyStructure) m1arg(x any)         {}
-func (d dummyStructure) m1int(x int)         {}
-func (d dummyStructure) m1varargs(x ...any)  {}
-func (d dummyStructure) m1varints(x ...int)  {}
-func (d *dummyStructure) m2()                {}
-func (d *dummyStructure) m2arg(x any)        {}
-func (d *dummyStructure) m2int(x int)        {}
-func (d *dummyStructure) m2varargs(x ...any) {}
-func (d *dummyStructure) m2varints(x ...int) {}
-func (d dummyStructure) get(i int) (r int)   { return d.s[i] }
-func (d dummyStructure) set(i, x int)        { d.s[i] = x }
+func (d dummyStructure) m1()                                      {}
+func (d dummyStructure) m1arg1(a any)                             {}
+func (d dummyStructure) m1int1(a int)                             {}
+func (d dummyStructure) m1arg2(a, b any)                          {}
+func (d dummyStructure) m1int2(a, b int)                          {}
+func (d dummyStructure) m1arg3(a, b, c any)                       {}
+func (d dummyStructure) m1int3(a, b, c int)                       {}
+func (d dummyStructure) m1arg4(a, b, c, e any)                    {}
+func (d dummyStructure) m1int4(a, b, c, e int)                    {}
+func (d dummyStructure) m1arg5(a, b, c, e, f any)                 {}
+func (d dummyStructure) m1int5(a, b, c, e, f int)                 {}
+func (d dummyStructure) m1arg6(a, b, c, e, f, g any)              {}
+func (d dummyStructure) m1int6(a, b, c, e, f, g int)              {}
+func (d dummyStructure) m1arg7(a, b, c, e, f, g, h any)           {}
+func (d dummyStructure) m1int7(a, b, c, e, f, g, h int)           {}
+func (d dummyStructure) m1arg8(a, b, c, e, f, g, h, i any)        {}
+func (d dummyStructure) m1int8(a, b, c, e, f, g, h, i int)        {}
+func (d dummyStructure) m1arg9(a, b, c, e, f, g, h, i, j any)     {}
+func (d dummyStructure) m1int9(a, b, c, e, f, g, h, i, j int)     {}
+func (d dummyStructure) m1arg10(a, b, c, e, f, g, h, i, j, k any) {}
+func (d dummyStructure) m1int10(a, b, c, e, f, g, h, i, j, k int) {}
+func (d dummyStructure) m1varargs(x ...any)                       {}
+func (d dummyStructure) m1varints(x ...int)                       {}
+func (d *dummyStructure) m2()                                     {}
+func (d dummyStructure) m2arg1(a any)                             {}
+func (d dummyStructure) m2int1(a int)                             {}
+func (d dummyStructure) m2arg2(a, b any)                          {}
+func (d dummyStructure) m2int2(a, b int)                          {}
+func (d dummyStructure) m2arg3(a, b, c any)                       {}
+func (d dummyStructure) m2int3(a, b, c int)                       {}
+func (d dummyStructure) m2arg4(a, b, c, e any)                    {}
+func (d dummyStructure) m2int4(a, b, c, e int)                    {}
+func (d dummyStructure) m2arg5(a, b, c, e, f any)                 {}
+func (d dummyStructure) m2int5(a, b, c, e, f int)                 {}
+func (d dummyStructure) m2arg6(a, b, c, e, f, g any)              {}
+func (d dummyStructure) m2int6(a, b, c, e, f, g int)              {}
+func (d dummyStructure) m2arg7(a, b, c, e, f, g, h any)           {}
+func (d dummyStructure) m2int7(a, b, c, e, f, g, h int)           {}
+func (d dummyStructure) m2arg8(a, b, c, e, f, g, h, i any)        {}
+func (d dummyStructure) m2int8(a, b, c, e, f, g, h, i int)        {}
+func (d dummyStructure) m2arg9(a, b, c, e, f, g, h, i, j any)     {}
+func (d dummyStructure) m2int9(a, b, c, e, f, g, h, i, j int)     {}
+func (d dummyStructure) m2arg10(a, b, c, e, f, g, h, i, j, k any) {}
+func (d dummyStructure) m2int10(a, b, c, e, f, g, h, i, j, k int) {}
+func (d *dummyStructure) m2varargs(x ...any)                      {}
+func (d *dummyStructure) m2varints(x ...int)                      {}
+func (d dummyStructure) get(i int) (r int)                        { return d.s[i] }
+func (d dummyStructure) set(i, x int)                             { d.s[i] = x }
 
 var dummy dummyStructure = dummyStructure{}
 var di any = dummyStructure{}
