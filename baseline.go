@@ -39,7 +39,7 @@ type dummyInterface1 interface {
 
 type dummyInterface2 interface {
 	dummyInterface1
-	m1arg(x any)
+	m1arg1(x any)
 }
 
 type dummyStructure struct {
